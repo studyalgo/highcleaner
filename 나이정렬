@@ -1,0 +1,53 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+bool compare(pair<string, pair<int, int>>a,
+	pair<string, pair<int, int>>b)
+{
+	if (a.second.second == b.second.second)
+		return a.second.first < b.second.first;
+	else
+		return a.second.second < b.second.second;
+}
+
+int main()
+{
+	int length;
+	
+	while (true)
+	{		
+		cin >> length;
+		if (length < 100000) break;
+	}	
+	string name;
+	int age = 0;
+		
+	vector<pair<string, pair<int, int>>> v;
+	for (int i = 0; i < length; i++)
+	{		
+		while (true)
+		{
+			cout << i + 1 << "번째:";
+			std::cin >> age;
+			if (age > 200 || age < 1) cout << "나이는 1살 초과, 200살 미만으로 입력해주세요\n";
+			else break;
+			
+			
+			
+		}			
+		getline(cin, name);		
+		v.push_back(pair<string, pair<int, int>>(name, make_pair(i, age)));
+		
+	}
+	sort(v.begin(), v.end(), compare);	
+	for (int i = 0; i < length; i++)
+	{
+		cout << v[i].second.second << " " << v[i].first <<"\n";
+	}
+
+	return 0;	
+}
