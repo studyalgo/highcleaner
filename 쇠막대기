@@ -33,9 +33,7 @@ int main()
 	//{가 나올때까지 {}의 갯수를 카운트
 	//{}의 갯수는 계속 저장.	
 	//잘려진 조각의 갯수는 한 막대에 쏘아진 레이저의 횟수 + 1을 각각 더하면 됨
-	vector<char> v;
-	int eraserCount = 0;
-	int leftCount = 0;
+	vector<char> v;	
 	int rightCount = 0;
 	int cutCount = 0;
 
