@@ -35,7 +35,7 @@ int main()
 	//잘려진 조각의 갯수는 한 막대에 쏘아진 레이저의 횟수 + 1을 각각 더하면 됨
 	vector<char> v;
 	int eraserCount = 0;
-	int sumEraserCount = 0;
+	int leftCount = 0;
 	int rightCount = 0;
 	int cutCount = 0;
 
@@ -44,34 +44,30 @@ int main()
 
 	char* ctcycle = new char[inputdata.size() + 1];
 	strcpy_s(ctcycle, inputdata.size() + 1, inputdata.c_str());
-	
+
 	for (int i = 0; i < inputdata.size(); i++)
 	{
 		v.push_back(ctcycle[i]);
 	}
-	for (int i = 0; i < inputdata.size(); i++)
-	{		
-		try
-		{
+	//for(int i = 0; i < inputdata.size(); i++) << 디버깅오류 v에 값이 없음에도 v[v.size()-2]를 실행하여 배열 횟수에 -값이 들어가게 만듬.
+	while (v.size() != 0) 
+	{
 			if (v.back() == 41 && v[v.size() - 2] == 40)
-			{
-				cutCount += rightCount * 2;
+			{				
+				cutCount += rightCount;
 				if (v.size() != 0) v.pop_back();
 			}
 			else if (v.back() == 41)
 				rightCount++;
 			else if (v.back() == 40)
-				rightCount--;
-			if(v.size() != 0)
+			{
+				rightCount--;				
+				cutCount += 1;			
+			}
+			if (v.size() != 0)
 				v.pop_back();
-		}
-		catch(exception&exp)
-		{
-			cout << exp.what();
-
-		}
 		
 	}
-	cout << cutCount;			
+	cout << cutCount;
 	return 0;
 }
